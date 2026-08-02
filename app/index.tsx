@@ -8,10 +8,10 @@ export default function Index() {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "green"
+        backgroundColor: "orange"
       }}
     >
-      <Text   className="text-red-600">Edit app/index.tsx to edit this screen.</Text>
+      <Text   className="text-blue-600 text-4xl">Edit app/index.tsx to edit this screen.</Text>
       <Image source={require("../assets/images/icon.png")}
       style={{ width: 200, height: 200, borderRadius: 20}}
       />
