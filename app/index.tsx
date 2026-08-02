@@ -1,25 +1,24 @@
-import { Image } from 'expo-image';
-import { Link } from 'expo-router';
-import { Text, View } from 'react-native';
+import { useAuth } from '@clerk/expo';
+import { SignInButton, UserButton, SignUpButton } from '@clerk/expo/web';
+import { ActivityIndicator, View } from 'react-native';
 
-export default function Index() {
+export default function MainScreen() {
+  const { isLoaded, isSignedIn } = useAuth({ treatPendingAsSignedOut: false });
+
+  if (!isLoaded) {
+    return <ActivityIndicator size="large" />;
+  }
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'black',
-      }}
-    >
-      <Text className="text-4xl text-blue-600">Edit app/index.tsx to edit this screen.</Text>
-      <Image
-        source={require('../assets/images/icon.png')}
-        style={{ width: 200, height: 200, borderRadius: 20 }}
-      />
-      <Link className="text-3xl text-white" href={'/(auth)/sign-up'}>
-        Sign Up
-      </Link>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {isSignedIn ? (
+        <UserButton />
+      ) : (
+        <>
+          <SignInButton />
+          <SignUpButton />
+        </>
+      )}
     </View>
   );
 }
