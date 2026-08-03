@@ -1,24 +1,12 @@
-import { useAuth } from '@clerk/expo';
-import { SignInButton, UserButton, SignUpButton } from '@clerk/expo/web';
-import { ActivityIndicator, View } from 'react-native';
+import { View, Text } from 'react-native';
+import React from 'react';
 
-export default function MainScreen() {
-  const { isLoaded, isSignedIn } = useAuth({ treatPendingAsSignedOut: false });
-
-  if (!isLoaded) {
-    return <ActivityIndicator size="large" />;
-  }
-
+const MainScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {isSignedIn ? (
-        <UserButton />
-      ) : (
-        <>
-          <SignInButton />
-          <SignUpButton />
-        </>
-      )}
+    <View>
+      <Text>MainScreen</Text>
     </View>
   );
-}
+};
+
+export default MainScreen;
