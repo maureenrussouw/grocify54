@@ -1,27 +1,21 @@
-import { useAuth } from '@clerk/expo';
-import { AuthView, UserButton } from '@clerk/expo/native';
-import { useState } from 'react';
-import { ActivityIndicator, Button, Modal, Platform, View } from 'react-native';
+import { View, Text } from 'react-native';
+import React from 'react';
+import { Link } from 'expo-router';
+import { SignOutButton } from '@/components/sign-out-button';
 
-export default function MainScreen() {
-  const { isLoaded, isSignedIn } = useAuth({ treatPendingAsSignedOut: false });
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
-
-  if (!isLoaded) {
-    return <ActivityIndicator size="large" />;
-  }
-
+const MainScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {isSignedIn ? <UserButton /> : <Button title="Sign up" onPress={() => setIsAuthOpen(true)} />}
-      <Modal
-        animationType="slide"
-        visible={isAuthOpen}
-        presentationStyle="pageSheet"
-        onRequestClose={() => setIsAuthOpen(false)}
-      >
-        <AuthView onDismiss={() => setIsAuthOpen(false)} />
-      </Modal>
+    <View>
+      <Text>MainScreen</Text>
+      <Link className="pb-6 pt-6 text-4xl" href={'/sign-up'}>
+        Sign Up
+      </Link>
+      <Link className="pb-6 pt-6 text-4xl" href={'/(auth)/sign-in'}>
+        Sign In
+      </Link>
+      <SignOutButton />
     </View>
   );
-}
+};
+
+export default MainScreen;
