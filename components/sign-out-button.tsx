@@ -1,31 +1,27 @@
 import { ThemedText } from '@/components/themed-text';
-import { useClerk } from '@clerk/expo';
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet } from 'react-native';
 
 export const SignOutButton = () => {
-  // Use `useClerk()` to access the `signOut()` function
-  const { signOut } = useClerk();
   const router = useRouter();
 
   const handleSignOut = async () => {
     try {
-      await signOut();
-      // Redirect to your desired page
       router.replace('/');
     } catch (err) {
-      // See https://clerk.com/docs/guides/development/custom-flows/error-handling
-      // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
     }
   };
 
   return (
     <Pressable
+      accessibilityRole="button"
       style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
       onPress={handleSignOut}
     >
-      <ThemedText style={styles.buttonText}>Sign out</ThemedText>
+      <ThemedText type="defaultSemiBold" style={styles.buttonText}>
+        Sign out
+      </ThemedText>
     </Pressable>
   );
 };
@@ -37,13 +33,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 8,
+    justifyContent: 'center',
+    marginTop: 16,
+    alignSelf: 'flex-start',
+    minWidth: 140,
   },
   buttonPressed: {
-    opacity: 0.7,
+    opacity: 0.75,
   },
   buttonText: {
     color: '#fff',
-    fontWeight: '600',
   },
 });

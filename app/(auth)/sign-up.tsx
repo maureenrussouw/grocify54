@@ -14,6 +14,8 @@ export default function MainScreen() {
   const handleSignUp = async () => {
     const { error } = await signUp.password({ emailAddress, password });
     if (error) {
+      console.log('sign up error', error);
+
       // Handle the error in your app.
       // See https://clerk.com/docs/guides/development/custom-flows/error-handling
       return;
@@ -21,6 +23,7 @@ export default function MainScreen() {
 
     const { error: sendError } = await signUp.verifications.sendEmailCode();
     if (sendError) {
+      console.log('sign up error', sendError);
       // Handle the error in your app.
       return;
     }

@@ -3,7 +3,7 @@ import { ThemedView } from '@/components/themed-view';
 import { useSignIn } from '@clerk/expo';
 import { type Href, Link, useRouter } from 'expo-router';
 import React from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Page() {
   const { signIn, errors, fetchStatus } = useSignIn();
@@ -173,6 +173,7 @@ export default function Page() {
         disabled={!emailAddress || !password || fetchStatus === 'fetching'}
       >
         <ThemedText style={styles.buttonText}>Continue</ThemedText>
+        <Text className="bg-black text-3xl text-white">Continue</Text>
       </Pressable>
       {/* For your debugging purposes. You can just console.log errors, but we put them in the UI for convenience */}
       {errors && <ThemedText style={styles.debug}>{JSON.stringify(errors, null, 2)}</ThemedText>}

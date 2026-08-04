@@ -1,5 +1,10 @@
 import { useAuth } from '@clerk/expo';
-import { SignInButton, SignUpButton, UserButton as WebUserButton } from '@clerk/expo/web';
+import {
+  SignInButton,
+  SignUpButton,
+  UserProfile,
+  UserButton as WebUserButton,
+} from '@clerk/expo/web';
 import { ActivityIndicator, View } from 'react-native';
 
 export default function MainScreen() {
@@ -12,7 +17,10 @@ export default function MainScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       {isSignedIn ? (
-        <WebUserButton />
+        <>
+          <WebUserButton />
+          <UserProfile />:
+        </>
       ) : (
         <>
           <SignInButton />
