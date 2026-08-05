@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MainScreen = () => {
   const router = useRouter();
-  const { signOut } = useAuth();
+  const { isLoaded, isSignedIn, signOut } = useAuth({ treatPendingAsSignedOut: false });
 
   const handleSignOut = async () => {
     try {
@@ -21,15 +21,20 @@ const MainScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>MainScreen</Text>
-        <Link className="pb-6 pt-6 text-4xl" href={'/sign-up'}>
-          Sign Up
-        </Link>
-        <Link className="pb-6 pt-6 text-4xl" href={'/(auth)/sign-in'}>
-          Sign In
-        </Link>
-        <Pressable onPress={handleSignOut} style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </Pressable>
+        <>
+          <Link className="pb-6 pt-6 text-4xl" href={'/(auth)/sign-up'}>
+            Sign Up
+          </Link>
+          <Link className="pb-6 pt-6 text-4xl" href={'/(auth)/sign-in'}>
+            Sign In
+          </Link>
+          <Link className="pb-6 pt-6 text-4xl" href={'/(auth)/sign-in-original'}>
+            Sign In Original
+          </Link>
+          <Pressable onPress={handleSignOut} style={styles.logoutButton}>
+            <Text style={styles.logoutText}>Logout</Text>
+          </Pressable>
+        </>
       </View>
     </SafeAreaView>
   );

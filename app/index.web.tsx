@@ -19,7 +19,6 @@ export default function MainScreen() {
       {isSignedIn ? (
         <>
           <WebUserButton />
-          <UserProfile />:
         </>
       ) : (
         <>
@@ -30,3 +29,4 @@ export default function MainScreen() {
     </View>
   );
 }
+// <UserProfile />
